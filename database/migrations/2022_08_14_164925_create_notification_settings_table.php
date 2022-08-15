@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('notification_settings', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('name');
-            $table->foreignId('governorate_id')->constrained('governorates');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('notification_settings');
     }
 };

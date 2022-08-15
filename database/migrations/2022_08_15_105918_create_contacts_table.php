@@ -13,10 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
+        Schema::create('contacts', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('governorate_id')->constrained('governorates');
+            $table->string('message_address');
+            $table->text('message_description');
+            $table->string('facebook');
+            $table->string('instegram');
+            $table->string('twitter');
+            $table->string('youtube');
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('contacts');
     }
 };

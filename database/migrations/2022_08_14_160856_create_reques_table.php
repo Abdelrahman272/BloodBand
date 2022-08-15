@@ -13,19 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('doners', function (Blueprint $table) {
+        Schema::create('reques', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->date('d_o_b');
+            $table->integer('age');
             $table->foreignId('blood_type_id')->constrained('blood_types');
-            $table->foreignId('city_id')->constrained('cities');
+            $table->integer('bags_num');
+            $table->string('hospital_name');
+            $table->string('hospital_address');
             $table->string('phone');
-            $table->string('password');
-            $table->string('pin_code')->nullable();
-            $table->string('age');
-            $table->string('address');
-            $table->enum('gender', ['male', 'female']);
+            $table->text('text');
+            $table->double('latitude');
+            $table->double('longitude');
+            $table->foreignId('city_id')->constrained('cities');
             $table->timestamps();
         });
     }
@@ -37,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doners');
+        Schema::dropIfExists('reques');
     }
 };

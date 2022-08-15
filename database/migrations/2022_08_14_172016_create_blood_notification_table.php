@@ -13,11 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cities', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->foreignId('governorate_id')->constrained('governorates');
-            $table->timestamps();
+        Schema::create('blood_notification', function (Blueprint $table) {
+            $table->integer('notification_settings_id');
+            $table->integer('blood_type_id');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cities');
+        Schema::dropIfExists('blood_notification');
     }
 };
