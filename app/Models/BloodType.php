@@ -9,13 +9,13 @@ class BloodType extends Model
 {
     use HasFactory;
 
-    public function bloodType()
+    public function DonarBloodType()
     {
-        return $this->hasMany(Doner::class);
+        return $this->hasMany(Donar::class);
     }
 
-    public function notifications()
+    public function donar()
     {
-        return $this->belongsToMany(NotificationSetting::class);
+        return $this->belongsToMany(Donar::class,'notification_settings');
     }
 }
