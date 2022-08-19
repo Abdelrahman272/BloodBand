@@ -9,6 +9,10 @@ class Governorate extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function cites()
     {
         return $this->hasMany(City::class);

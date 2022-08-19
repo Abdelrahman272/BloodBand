@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('name');
-            $table->integer('blood_type_id')->constrained('blood_types');
-            $table->integer('donar_id')->constrained('donar');
+            $table->foreignId('blood_type_id')->constrained('blood_types');
+            $table->foreignId('donar_id')->constrained('donar');
             $table->timestamps();
         });
     }

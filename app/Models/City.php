@@ -9,8 +9,15 @@ class City extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     public function governorate()
     {
         return $this->belongsTo(Governorate::class);
+    }
+
+    public function donar_city()
+    {
+        return $this->belongsTo(Donar::class);
     }
 }

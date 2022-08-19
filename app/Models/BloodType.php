@@ -9,6 +9,8 @@ class BloodType extends Model
 {
     use HasFactory;
 
+    protected $fillable = array('name');
+
     public function DonarBloodType()
     {
         return $this->hasMany(Donar::class);

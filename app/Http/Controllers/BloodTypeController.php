@@ -14,7 +14,7 @@ class BloodTypeController extends Controller
      */
     public function index()
     {
-        //
+        return BloodType::all();
     }
 
     /**
@@ -35,7 +35,7 @@ class BloodTypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        BloodType::create($request->all());
     }
 
     /**

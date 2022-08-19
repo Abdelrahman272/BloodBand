@@ -14,7 +14,7 @@ class GovernorateController extends Controller
      */
     public function index()
     {
-        //
+        return Governorate::all();
     }
 
     /**

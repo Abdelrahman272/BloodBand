@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Doner;
+use App\Models\Donar;
 use Illuminate\Http\Request;
 
-class DonerController extends Controller
+class DonarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class DonerController extends Controller
      */
     public function index()
     {
-        //
+        return Donar::all();
     }
 
     /**
@@ -35,16 +34,16 @@ class DonerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Donar::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Doner  $doner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Doner $doner)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class DonerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Doner  $doner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Doner $doner)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class DonerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Doner  $doner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Doner $doner)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class DonerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Doner  $doner
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Doner $doner)
+    public function destroy($id)
     {
         //
     }
