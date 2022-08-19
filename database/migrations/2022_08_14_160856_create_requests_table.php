@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('hospital_name');
             $table->string('hospital_address');
             $table->string('phone');
-            $table->text('text');
+            $table->text('notes');
             $table->double('latitude');
             $table->double('longitude');
             $table->foreignId('city_id')->constrained('cities');

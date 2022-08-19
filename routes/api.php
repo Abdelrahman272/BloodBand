@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\BloodTypeController;
-use App\Http\Controllers\DonarController;
 use App\Http\Controllers\GovernorateController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,18 +13,16 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 
-Route::get('/blood-types',[BloodTypeController::class,'index']);
-Route::post('/blood-types/create',[BloodTypeController::class,'store']);
+Route::get('/blood-types', [BloodTypeController::class, 'index']);
+Route::post('/blood-types/create', [BloodTypeController::class, 'store']);
 
-Route::post('/governorate',[GovernorateController::class,'index']);
+Route::post('/governorate', [GovernorateController::class, 'index']);
 
-
-
-
-//Route::get('/donar', [DonarController::class, 'index']);
+Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
+Route::post('/donor-requests/create', [\App\Http\Controllers\Api\DonorRequestController::class, 'create']);

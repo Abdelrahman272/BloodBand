@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('donar', function (Blueprint $table) {
+        Schema::create('donors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email');
@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('age');
             $table->string('address');
             $table->enum('gender', ['male', 'female']);
+            $table->text("token")->nullable();
             $table->timestamps();
         });
     }

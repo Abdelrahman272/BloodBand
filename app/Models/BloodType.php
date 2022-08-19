@@ -9,7 +9,7 @@ class BloodType extends Model
 {
     use HasFactory;
 
-    protected $fillable = array('name');
+    protected $fillable = ['name'];
 
     public function DonarBloodType()
     {
@@ -18,6 +18,6 @@ class BloodType extends Model
 
     public function donar()
     {
-        return $this->belongsToMany(Donar::class,'notification_settings');
+        return $this->belongsToMany(Donar::class, 'notification_settings');
     }
 }

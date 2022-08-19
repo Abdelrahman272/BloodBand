@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Governorate;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class GovernorateSeeder extends Seeder
@@ -16,13 +15,12 @@ class GovernorateSeeder extends Seeder
     public function run()
     {
         $governorates = [
-            "الاسكندريه",
-            "اسيوط",
-            "الغربية",
+            'الاسكندريه',
+            'اسيوط',
+            'الغربية',
         ];
 
-        foreach($governorates as $governorate)
-        {
+        foreach ($governorates as $governorate) {
             Governorate::create([
                 'name' => $governorate,
             ]);
