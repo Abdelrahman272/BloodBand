@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Donor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -11,16 +12,6 @@ class DonorRequestController extends \Illuminate\Routing\Controller
 
     public function create(Request $request)
     {
-
-        $token = $request->header('token');
-        $donor = \App\Models\Donor::where('token', $token)->first();
-
-        if(!$donor){
-            return response()->json(
-                [
-                    "message" => "unauthorized",
-                ], 401);
-        }
 
         $validator = Validator::make($request->all(), [
             "name" => "required|max:255",
@@ -36,29 +27,16 @@ class DonorRequestController extends \Illuminate\Routing\Controller
             "phone" => "required|numeric",
         ]);
 
-        if ($validator->fails()) {
-            return response()->json([
-                "message" => $validator->errors()->first(),
-                "errors" => $validator->errors(),
-            ], 400);
+        if ($validator->fails()) 
+        {
+            return responseJson('400',$validator->errors());
         }
 
-        \App\Models\Request::create([
-            "name" => $request->name,
-            "age" => $request->age,
-            "blood_type_id" => $request->blood_type_id,
-            "bags_num" => $request->bags_num,
-            "hospital_name" => $request->hospital_name,
-            "hospital_address" => $request->hospital_address,
-            "notes" => $request->notes,
-            "city_id" => $request->city_id,
-            "latitude" => $request->latitude,
-            "longitude" => $request->longitude,
-            "phone" => $request->phone,
-        ]);
+        $tokens = Donor::whereHas("bloodTypes", function($q) use ($request) {
+            $q->where('blood_type_id', $request->blood_type_id);
+        })->tokens()->pluck("token")->toArray();
 
-        return response()->json([
-            "message" => "تم ارسال الطلب بنجاح",
-        ], 200);
+        return responseJson('200',"تم ارسال الطلب بنجاح");
+       
     }
 }

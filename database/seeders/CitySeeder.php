@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\City;
+use App\Models\Governorate;
 use Illuminate\Database\Seeder;
 
 class CitySeeder extends Seeder
@@ -15,7 +16,7 @@ class CitySeeder extends Seeder
     public function run()
     {
         $cities = [
-            'البقليه',
+            'الدقهليه',
             'الجيزة',
             'الشرقية',
             'الغربية',
@@ -26,7 +27,7 @@ class CitySeeder extends Seeder
         foreach ($cities as $city) {
             City::create([
                 'name' => $city,
-                'governorate_id' => rand(1, \App\Models\Governorate::count()),
+                'governorate_id' => rand(1, Governorate::count()),
             ]);
         }
     }

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\MainController;
+use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\BloodTypeController;
 use App\Http\Controllers\GovernorateController;
 use Illuminate\Support\Facades\Route;
@@ -19,10 +22,25 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get('/blood-types', [BloodTypeController::class, 'index']);
-Route::post('/blood-types/create', [BloodTypeController::class, 'store']);
 
-Route::post('/governorate', [GovernorateController::class, 'index']);
+Route::controller(MainController::class)->group(function (){
+    Route::get('/blood-types', 'bloodTypes');
+    Route::get('/governorate', 'governorates');
+    Route::get("/settings","settings");
+    Route::get('/cities/{id}', 'cities');
+    Route::post("contact-us", "ContactUs");
+    Route::get("blogs", "blogs");
+});
 
 Route::post('/login', [\App\Http\Controllers\Api\AuthController::class, 'login']);
-Route::post('/donor-requests/create', [\App\Http\Controllers\Api\DonorRequestController::class, 'create']);
+
+Route::group(["middleware" => ['check-auth']], function(){
+    Route::post('token', [AuthController::class, "token"]);
+    Route::post('notification-setting', [AuthController::class, "notificationSetting"]);
+    Route::post('/donor-requests/create', [\App\Http\Controllers\Api\DonorRequestController::class, 'create']);
+    Route::post("blogs/toggle-active/{id}", [PostController::class, "toggleActive"]);
+});
+
+
+
+

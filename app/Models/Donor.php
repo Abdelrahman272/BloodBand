@@ -30,6 +30,16 @@ class Donor extends Model
 
     public function bloodType()
     {
-        return $this->belongsToMany(BloodType::class, 'notification_settings');
+        return $this->belongsTo(BloodType::class, 'notification_settings');
+    }
+
+    public function tokens()
+    {
+        return $this->hasMany(Token::class);
+    }
+
+    public function bloodTypes()
+    {
+        return $this->belongsToMany(BloodType::class);
     }
 }

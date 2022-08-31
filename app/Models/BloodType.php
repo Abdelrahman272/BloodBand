@@ -13,11 +13,11 @@ class BloodType extends Model
 
     public function DonarBloodType()
     {
-        return $this->hasMany(Donar::class);
+        return $this->hasMany(Donor::class);
     }
 
-    public function donar()
+    public function donors()
     {
-        return $this->belongsToMany(Donar::class, 'notification_settings');
+        return $this->belongsToMany(Donor::class);
     }
 }
