@@ -31,5 +31,7 @@
 <script src="assets/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="assets/dist/js/pages/dashboard.js"></script>
+
+@stack('js')
 </body>
 </html>

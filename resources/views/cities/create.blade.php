@@ -8,7 +8,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create City</h1>
+                        <h1>Create cities</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -53,11 +53,11 @@
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Add New City</h3>
+                            <h3 class="card-title">Add New cities</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{route('city.store')}}" method="POST">
+                        <form action="{{route('cities.store')}}" method="POST">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -65,7 +65,7 @@
                                     <input type="text" name="governorate_id" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">City</label>
+                                    <label for="exampleInputEmail1">cities</label>
                                     <input type="text" name="name" class="form-control">
                                 </div>
                             </div>

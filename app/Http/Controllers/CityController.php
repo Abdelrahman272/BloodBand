@@ -15,8 +15,8 @@ class CityController extends Controller
      */
     public function index()
     {
-        $cites = City::get();
-         return view('city.index', compact('cites'));
+        $models = City::paginate(12);
+         return view('cities.index', compact('models'));
     }
 
     /**
@@ -26,7 +26,7 @@ class CityController extends Controller
      */
     public function create()
     {
-        return view('city.create');
+        return view('cities.create');
     }
 
     /**
