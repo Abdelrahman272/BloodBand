@@ -61,13 +61,13 @@ Category
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{route('category.update',[$categories->id])}}" method="POST">
+                        <form action="{{route('category.update',$models->id)}}" method="POST">
                             @method('put')
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Category</label>
-                                    <input type="text" name="name" value="{{$categories->name}}" class="form-control" required>
+                                    <input type="text" name="name" value="{{$models->name}}" class="form-control" required>
                                 </div>
                             </div>
                             <!-- /.card-body -->

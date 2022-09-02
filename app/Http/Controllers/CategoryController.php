@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCategoryRequest;
 use App\Models\Category;
 use App\Models\Governorate;
 use Illuminate\Http\Request;
@@ -15,8 +16,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('category.index', compact('categories'));
+        $models = Category::all();
+        return view('category.index', compact('models'));
     }
 
     /**
@@ -35,14 +36,13 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        try {
-            Category::create($request->all());
-            return redirect()->back()->with('success', 'Data saved successfully');
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-            }
+        Category::create([
+            "name"=>$request->name,
+        ]);
+
+        return redirect()->route('category.index');
     }
 
     /**
@@ -64,8 +64,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::findorFail($id);
-        return view('category.edit', compact('categories'));
+        $models = Category::findorFail($id);
+        return view('category.edit', compact('models'));
     }
 
     /**
@@ -75,15 +75,16 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCategoryRequest $request, $id)
     {
-        $categories = Category::findorFail($id);
-        
-        $categories->update([
-            'name'=>$request->name
+
+        $models = Category::findorFail($id);
+
+        $models->update([
+            "name"=>$request->name,
         ]);
 
-        return redirect()->route('category');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -95,6 +96,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::destroy($id);
-        return redirect()->route('category');
+        return redirect()->route('category.index');
     }
 }

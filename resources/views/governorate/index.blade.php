@@ -36,41 +36,31 @@ Governorates
                 </div>
                 <div class="card-body">
 
-                    {{-- @if(session()->has('delete'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{\session()->get('delete')}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif --}}
-
                     <a href="{{route('governorate.create')}}" class="btn btn-success" role="button" aria-disabled="true">Add Governorate</a><br><br>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            <th>#ID</th>
                             <th>Governorate</th>
-                            <th>Buttons</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php $i = 0; ?>
-                        @foreach($governorates as $governorate)
+                        @foreach($models as $model)
                         <?php $i++; ?>
                             <tr>
                                 <td>{{$i}}</td>
-                                <td>{{$governorate->name}}</td>
+                                <td>{{$model->name}}</td>
                                 <td>
-                                    <a href="{{route('governorate.edit', $governorate->id)}}" class="btn btn-primary btn-sm" role="button" aria-disabled="true">Edit</a>
-                                    <form action="{{route('governorate.destroy', $governorate->id)}}" method="POST">
+                                    <a href="{{route('governorate.edit', $model->id)}}" class="btn btn-primary btn-md" role="button" aria-disabled="true">Edit</a>
+                                    <form class="btn" action="{{route('governorate.destroy', $model->id)}}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button type="submit" class="btn btn-danger btn-sm" data-toggle="modal">Delete</button>
+                                        <button type="submit" class="btn btn-danger btn-md" data-toggle="modal">Delete</button>
                                     </form>
                                 </td>
                             </tr>
-                            {{-- @include('posts.destroy') --}}
                         @endforeach
                     </table>
                 </div>

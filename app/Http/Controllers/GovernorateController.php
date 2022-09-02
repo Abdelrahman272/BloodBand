@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGovernorateRequest;
 use App\Models\Governorate;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,8 @@ class GovernorateController extends Controller
      */
     public function index()
     {
-        $governorates = Governorate::all();
-        return view('governorate.index', compact('governorates'));
+        $models = Governorate::all();
+        return view('governorate.index', compact('models'));
     }
 
     /**
@@ -34,14 +35,13 @@ class GovernorateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreGovernorateRequest $request)
     {
-        try {
-            Governorate::create($request->all());
-            return redirect()->back()->with('success', 'Data saved successfully');
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-            }
+        Governorate::create([
+            "name"=>$request->name,
+        ]);
+
+        return redirect()->route('governorate.index');
     }
 
     /**
@@ -74,15 +74,17 @@ class GovernorateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreGovernorateRequest $request, $id)
     {
-        $governorate = Governorate::findorFail($id);
-        
-        $governorate->update([
-            'name'=>$request->name
+
+        $models = Governorate::findorFail($id);
+
+        $models->update([
+            "name"=>$request->name,
+
         ]);
 
-        return redirect()->route('governorate');
+        return redirect()->route('governorate.index');
     }
 
     /**
@@ -94,6 +96,6 @@ class GovernorateController extends Controller
     public function destroy($id)
     {
         Governorate::destroy($id);
-        return redirect()->route('governorate');
+        return redirect()->route('governorate.index');
     }
 }

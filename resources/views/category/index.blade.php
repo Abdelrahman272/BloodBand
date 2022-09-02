@@ -49,21 +49,21 @@ Governorates
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>#</th>
+                            <th>#ID</th>
                             <th>Category</th>
-                            <th>Buttons</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php $i = 0; ?>
-                        @foreach($categories as $category)
+                        @foreach($models as $model)
                         <?php $i++; ?>
                             <tr>
                                 <td>{{$i}}</td>
-                                <td>{{$category->name}}</td>
+                                <td>{{$model->name}}</td>
                                 <td>
-                                    <a href="{{route('category.edit', $category->id)}}" class="btn btn-primary btn-sm" role="button" aria-disabled="true">Edit</a>
-                                    <form action="{{route('category.destroy', $category->id)}}" method="POST">
+                                    <a href="{{route('category.edit', $model->id)}}" class="btn btn-primary btn-sm" role="button" aria-disabled="true">Edit</a>
+                                    <form class="btn" action="{{route('category.destroy', $model->id)}}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-sm" data-toggle="modal">Delete</button>

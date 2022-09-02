@@ -1,4 +1,8 @@
 @extends('layout.app')
+@section('title')
+    Cities
+@endsection
+
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -8,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create Category</h1>
+                        <h1>Edit Cities</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -40,18 +44,39 @@
                             </ul>
                         </div>
                     @endif
+
+                    @if (session()->has('edit'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ \session()->get('edit') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+
+
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Add New Categoty</h3>
+                            <h3 class="card-title">Edit Cities</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{route('category.store')}}" method="POST">
+                        <form action="{{ route('cities.update', [$models->id]) }}" method="POST">
+                            @method('put')
                             @csrf
                             <div class="card-body">
+                                <label for="exampleSelect">Governorate</label>
+                                <select  id="country-dropdown" class="form-control" name="governorate_id">
+                                    <option value=""> -- Select One --</option>
+                                    @inject('governorates', 'App\Http\Requests\GovernorateRequest')
+                                    @foreach ($governorates::test() as $governorate)
+                                        <option value="{{ $governorate->id }}"  >{{ $governorate->name }}</option>
+                                    @endforeach
+                                </select>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Category</label>
-                                    <input type="text" name="name" class="form-control">
+                                    <label for="exampleInputEmail1">Cities</label>
+                                    <input type="text" name="name" value="{{ $models->name }}" class="form-control"
+                                        required>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -71,4 +96,3 @@
     <!-- /.content-wrapper -->
 
 @endsection
-

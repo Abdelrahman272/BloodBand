@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCityRequest;
 use App\Models\City;
+use App\Models\Governorate;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class CityController extends Controller
 {
@@ -15,7 +18,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $models = City::paginate(12);
+        $models = City::with('governorate')->get();
          return view('cities.index', compact('models'));
     }
 
@@ -35,14 +38,14 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCityRequest $request)
     {
-        try {
-            City::create($request->all());
-            return redirect()->back()->with('success', 'Data saved successfully');
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-            }
+        City::create([
+            "name"=>$request->name,
+            "governorate_id"=>$request->governorate_id,
+        ]);
+
+        return redirect()->route('cities.index');
     }
 
     /**
@@ -64,7 +67,8 @@ class CityController extends Controller
      */
     public function edit($id)
     {
-        //
+        $models = City::findorFail($id);
+        return view('cities.edit', compact('models'));
     }
 
     /**
@@ -74,9 +78,16 @@ class CityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCityRequest $request, $id)
     {
-        //
+        $models = City::findorFail($id);
+
+        $models->update([
+            "name"=>$request->name,
+            "governorate_id"=>$request->governorate_id,
+        ]);
+
+        return redirect()->route('cities.index');
     }
 
     /**
@@ -87,6 +98,7 @@ class CityController extends Controller
      */
     public function destroy($id)
     {
-        //
+        City::destroy($id);
+        return redirect()->route('cities.index');
     }
 }

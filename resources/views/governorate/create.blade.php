@@ -53,7 +53,7 @@
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Add New City</h3>
+                            <h3 class="card-title">Add New Governorate</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->

@@ -32,23 +32,13 @@
                 <div class="card-body">
 
                     @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-
-
-                    @if(session()->has('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{\session()->get('success')}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
 
                     <div class="card card-primary">
@@ -61,11 +51,17 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Governorate</label>
-                                    <input type="text" name="governorate_id" class="form-control">
+                                    <label for="exampleSelect">Governorate</label>
+                                    <select  id="country-dropdown" class="form-control" name="governorate_id">
+                                        <option value=""> -- Select One --</option>
+                                        @inject('governorates', 'App\Http\Requests\GovernorateRequest')
+                                        @foreach ($governorates::test() as $governorate)
+                                            <option value="{{ $governorate->id }}"  >{{ $governorate->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">cities</label>
+                                    <label for="exampleInputEmail1">City Name</label>
                                     <input type="text" name="name" class="form-control">
                                 </div>
                             </div>

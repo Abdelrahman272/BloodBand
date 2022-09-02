@@ -22,16 +22,6 @@ Route::get('/', function () {
 
 Route::resource('/cities', CityController::class);
 
-Route::controller(GovernorateController::class)->group(function () {
-    Route::resource('governorate', GovernorateController::class);
-    Route::get('/governorate', 'index')->name('governorate');
-    Route::get('/governorate/create', 'create')->name('governorate.create');
-    Route::post('/governorate/store', 'store')->name('governorate.store');
-});
+Route::resource('/governorate', GovernorateController::class);
 
-Route::controller(CategoryController::class)->group(function () {
-    Route::resource('category', CategoryController::class);
-    Route::get('/category', 'index')->name('category');
-    Route::get('/category/create', 'create')->name('category.create');
-    Route::post('/category/store', 'store')->name('category.store');
-});
+Route::resource('/category', CategoryController::class);
