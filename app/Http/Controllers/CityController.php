@@ -18,7 +18,7 @@ class CityController extends Controller
      */
     public function index()
     {
-        $models = City::with('governorate')->get();
+        $models = City::with('governorate')->orderBy('id', 'DESC')->get();
          return view('cities.index', compact('models'));
     }
 
@@ -29,6 +29,14 @@ class CityController extends Controller
      */
     public function create()
     {
+        $model = Governorate::all();
+
+        if($model->count() < 1)
+        {
+            flash('Please Add Governorate Before Add City')->error();
+            return redirect()->route('cities.index');   
+        }
+
         return view('cities.create');
     }
 
@@ -45,6 +53,7 @@ class CityController extends Controller
             "governorate_id"=>$request->governorate_id,
         ]);
 
+        flash('City Add Success')->success();
         return redirect()->route('cities.index');
     }
 
@@ -87,6 +96,7 @@ class CityController extends Controller
             "governorate_id"=>$request->governorate_id,
         ]);
 
+        flash('City Update Success')->success();
         return redirect()->route('cities.index');
     }
 
@@ -99,6 +109,7 @@ class CityController extends Controller
     public function destroy($id)
     {
         City::destroy($id);
+        flash('City has been deleted')->success();
         return redirect()->route('cities.index');
     }
 }

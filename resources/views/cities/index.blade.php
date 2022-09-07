@@ -20,6 +20,7 @@
             <div class="card-header">
                 <a href="{{route('cities.create')}}" class="btn btn-primary btn-md" role="button" aria-disabled="true">Add Cities</a>
             </div>
+            @include('flash::message')
             <!-- /.card-header -->
             <div class="card-body">
                 <div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4">

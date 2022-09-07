@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DonorController;
 use App\Http\Controllers\GovernorateController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,3 +28,9 @@ Route::resource('/cities', CityController::class);
 Route::resource('/governorate', GovernorateController::class);
 
 Route::resource('/category', CategoryController::class);
+
+Route::resource('/posts', PostController::class);
+
+Route::resource('/contact', ContactController::class);
+
+Route::resource('/donors', DonorController::class);

@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('title')
-    Cities
+edit/post
 @endsection
 
 
@@ -12,7 +12,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Edit Cities</h1>
+                        <h1>Edit Post</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -45,9 +45,9 @@
                         </div>
                     @endif
 
-                    @if (session()->has('edit'))
+                    @if(session()->has('edit'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{ \session()->get('edit') }}
+                            {{\session()->get('edit')}}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -57,26 +57,21 @@
 
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Edit Cities</h3>
+                            <h3 class="card-title">Edit Post</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('cities.update', [$models->id]) }}" method="POST">
+                        <form action="{{route('posts.update',[$model->id])}}" method="POST">
                             @method('put')
                             @csrf
                             <div class="card-body">
-                                <label for="exampleSelect">Governorate</label>
-                                <select  id="country-dropdown" class="form-control" name="governorate_id">
-                                    <option value=""> -- Select One --</option>
-                                    @inject('governorates', 'App\Models\Governorate')
-                                    @foreach ($governorates::all() as $governorate)
-                                        <option value="{{ $governorate->id }}" @if ($governorate->id == $models->governorate->id) selected @endif>{{ $governorate->name }}</option>
-                                    @endforeach
-                                </select>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Cities</label>
-                                    <input type="text" name="name" value="{{ $models->name }}" class="form-control"
-                                        required>
+                                    <label for="exampleInputEmail1">Title</label>
+                                    <input type="text" name="title" value="{{$model->title}}" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Body</label>
+                                    <textarea class="form-control" name='body' id="exampleFormControlTextarea1" rows="3">{{$model->body}}</textarea>
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -96,3 +91,4 @@
     <!-- /.content-wrapper -->
 
 @endsection
+

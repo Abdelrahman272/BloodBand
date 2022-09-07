@@ -23,6 +23,7 @@ Governorates
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
+                    @include('flash::message')
                     <h3 class="card-title">Category List</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">

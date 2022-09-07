@@ -174,6 +174,24 @@
                             <p>Category</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('posts.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-circle text-warning"></i>
+                            <p>Post</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('contact.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-circle text-warning"></i>
+                            <p>Contact Us</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('donors.index') }}" class="nav-link">
+                            <i class="nav-icon far fa-circle text-warning"></i>
+                            <p>Donor</p>
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

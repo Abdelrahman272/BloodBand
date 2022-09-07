@@ -70,6 +70,7 @@
       "responsive": true,
     });
   });
+  $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
 </script>
 
 @stack('js')

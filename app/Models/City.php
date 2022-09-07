@@ -18,6 +18,6 @@ class City extends Model
 
     public function donar_city()
     {
-        return $this->belongsTo(Donar::class);
+        return $this->hasMany(Donor::class);
     }
 }

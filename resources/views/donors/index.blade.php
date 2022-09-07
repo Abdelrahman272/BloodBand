@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('title')
-Governorates
+Donors
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@ Governorates
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Governorates</h1>
+                        <h1>Donors</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -24,7 +24,7 @@ Governorates
             <div class="card">
                 <div class="card-header">
                     @include('flash::message')
-                    <h3 class="card-title">Governorates List</h3>
+                    <h3 class="card-title">Donors List</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -35,14 +35,21 @@ Governorates
                     </div>
                 </div>
                 <div class="card-body">
-
-                    <a href="{{route('governorate.create')}}" class="btn btn-success" role="button" aria-disabled="true">Add Governorate</a><br><br>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>#ID</th>
-                            <th>Governorate</th>
-                            <th>Actions</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <td>d_o_b</td>
+                            <td>Age</td>
+                            <th>city</th>
+                            <th>Blood Type</th>
+                            <th>Phone</th>
+                            <th>address</th>
+                            <th>Gender</th>
+                            <th>Status</th>
+                            <th>Delete</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -52,9 +59,24 @@ Governorates
                             <tr>
                                 <td>{{$i}}</td>
                                 <td>{{$model->name}}</td>
+                                <td>{{$model->email}}</td>
+                                <td>{{$model->d_o_b}}</td>
+                                <td>{{$model->age}}</td>
+                                <td>{{$model->cites->name}}</td>
+                                <td>{{$model->bloodTypes->name}}</td>
+                                <td>{{$model->phone}}</td>
+                                <td>{{$model->address}}</td>
+                                <td>{{$model->gender}}</td>
                                 <td>
-                                    <a href="{{route('governorate.edit', $model->id)}}" class="btn btn-primary btn-md" role="button" aria-disabled="true">Edit</a>
-                                    <form class="btn" action="{{route('governorate.destroy', $model->id)}}" method="POST">
+                                    @if ($model->status == '1')
+                                        Active
+                                    @else
+                                        InActive;
+                                    @endif
+                                </td>
+                                {{-- <td>{{$model->status}}</td> --}}
+                                <td>
+                                    <form class="btn" action="{{route('donors.destroy', $model->id)}}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-md" data-toggle="modal">Delete</button>

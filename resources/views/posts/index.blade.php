@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('title')
-Governorates
+Posts
 @endsection
 
 @section('content')
@@ -11,7 +11,7 @@ Governorates
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Governorates</h1>
+                        <h1>Posts</h1>
                     </div>
                 </div>
             </div><!-- /.container-fluid -->
@@ -24,7 +24,7 @@ Governorates
             <div class="card">
                 <div class="card-header">
                     @include('flash::message')
-                    <h3 class="card-title">Governorates List</h3>
+                    <h3 class="card-title">Posts List</h3>
                     <div class="card-tools">
                         <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
                             <i class="fas fa-minus"></i>
@@ -36,12 +36,13 @@ Governorates
                 </div>
                 <div class="card-body">
 
-                    <a href="{{route('governorate.create')}}" class="btn btn-success" role="button" aria-disabled="true">Add Governorate</a><br><br>
+                    <a href="{{route('posts.create')}}" class="btn btn-success" role="button" aria-disabled="true">Add Posts</a><br><br>
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
                             <th>#ID</th>
-                            <th>Governorate</th>
+                            <th>Title</th>
+                            <th>Body</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -51,10 +52,11 @@ Governorates
                         <?php $i++; ?>
                             <tr>
                                 <td>{{$i}}</td>
-                                <td>{{$model->name}}</td>
+                                <td>{{$model->title}}</td>
+                                <td>{{$model->body}}</td>
                                 <td>
-                                    <a href="{{route('governorate.edit', $model->id)}}" class="btn btn-primary btn-md" role="button" aria-disabled="true">Edit</a>
-                                    <form class="btn" action="{{route('governorate.destroy', $model->id)}}" method="POST">
+                                    <a href="{{route('posts.edit', $model->id)}}" class="btn btn-primary btn-md" role="button" aria-disabled="true">Edit</a>
+                                    <form class="btn" action="{{route('posts.destroy', $model->id)}}" method="POST">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-md" data-toggle="modal">Delete</button>

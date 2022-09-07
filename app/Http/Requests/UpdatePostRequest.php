@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Governorate;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\DB;
 
-class GovernorateRequest extends FormRequest
+class UpdatePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +13,7 @@ class GovernorateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -28,12 +26,5 @@ class GovernorateRequest extends FormRequest
         return [
             //
         ];
-    }
-
-    public static function test()
-    {
-        $governorates = Governorate::all();
-
-        return $governorates;
     }
 }

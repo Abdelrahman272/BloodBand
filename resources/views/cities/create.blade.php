@@ -8,8 +8,9 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1>Create cities</h1>
+                        <h1>Create City</h1>
                     </div>
+                    @include('flash::message')
                 </div>
             </div><!-- /.container-fluid -->
         </section>
@@ -54,8 +55,8 @@
                                     <label for="exampleSelect">Governorate</label>
                                     <select  id="country-dropdown" class="form-control" name="governorate_id">
                                         <option value=""> -- Select One --</option>
-                                        @inject('governorates', 'App\Http\Requests\GovernorateRequest')
-                                        @foreach ($governorates::test() as $governorate)
+                                        @inject('governorates', 'App\Models\Governorate')
+                                        @foreach ($governorates::all() as $governorate)
                                             <option value="{{ $governorate->id }}"  >{{ $governorate->name }}</option>
                                         @endforeach
                                     </select>

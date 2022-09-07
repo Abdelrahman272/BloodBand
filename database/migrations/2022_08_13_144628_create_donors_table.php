@@ -27,6 +27,7 @@ return new class extends Migration
             $table->string('address');
             $table->enum('gender', ['male', 'female']);
             $table->text("token")->nullable();
+            $table->enum('status', ['1', '0']);
             $table->timestamps();
         });
     }

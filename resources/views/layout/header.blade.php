@@ -20,6 +20,8 @@
     <link rel="stylesheet" href={{ URL::asset('assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}>
     <!-- JQVMap -->
     <link rel="stylesheet" href={{ URL::asset('assets/plugins/jqvmap/jqvmap.min.css') }}>
+
+    {{-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> --}}
     <!-- Theme style -->
     <link rel="stylesheet" href={{ URL::asset('assets/dist/css/adminlte.min.css') }}>
     <!-- overlayScrollbars -->

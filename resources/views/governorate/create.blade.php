@@ -10,13 +10,13 @@
                     <div class="col-sm-6">
                         <h1>Create Governorate</h1>
                     </div>
+                    @include('flash::message')
                 </div>
             </div><!-- /.container-fluid -->
         </section>
 
         <!-- Main content -->
         <section class="content">
-
             <!-- Default box -->
             <div class="card">
                 <div class="card-header">
@@ -38,16 +38,6 @@
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
-                        </div>
-                    @endif
-
-
-                    @if(session()->has('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            {{\session()->get('success')}}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
                         </div>
                     @endif
 

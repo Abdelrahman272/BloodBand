@@ -25,7 +25,7 @@ class Donor extends Model
 
     public function cites()
     {
-        return $this->hasMany(City::class);
+        return $this->belongsTo(City::class, 'id');
     }
 
     public function bloodType()
@@ -40,6 +40,6 @@ class Donor extends Model
 
     public function bloodTypes()
     {
-        return $this->belongsToMany(BloodType::class);
+        return $this->belongsTo(BloodType::class, 'id');
     }
 }

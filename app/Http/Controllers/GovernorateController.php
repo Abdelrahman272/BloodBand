@@ -41,6 +41,7 @@ class GovernorateController extends Controller
             "name"=>$request->name,
         ]);
 
+        flash('Governorate Success To Create')->success();
         return redirect()->route('governorate.index');
     }
 
@@ -81,9 +82,9 @@ class GovernorateController extends Controller
 
         $models->update([
             "name"=>$request->name,
-
         ]);
 
+        flash('Governorate Update Success')->success();
         return redirect()->route('governorate.index');
     }
 
@@ -95,7 +96,15 @@ class GovernorateController extends Controller
      */
     public function destroy($id)
     {
+        $model = Governorate::findorFail($id);
+
+        if($model->cites->count() > 0)
+        {
+            flash('Cants Delete Governorate Because Have Cities')->error();
+            return redirect()->route('governorate.index');
+        }
         Governorate::destroy($id);
+        flash('Governorate has been deleted')->success();
         return redirect()->route('governorate.index');
     }
 }

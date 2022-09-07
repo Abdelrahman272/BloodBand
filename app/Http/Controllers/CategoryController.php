@@ -42,6 +42,7 @@ class CategoryController extends Controller
             "name"=>$request->name,
         ]);
 
+        flash('Category has been Created')->success();
         return redirect()->route('category.index');
     }
 
@@ -84,6 +85,7 @@ class CategoryController extends Controller
             "name"=>$request->name,
         ]);
 
+        flash('Category has been Updated')->success();
         return redirect()->route('category.index');
     }
 
@@ -96,6 +98,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::destroy($id);
+        flash('Category has been deleted')->success();
         return redirect()->route('category.index');
     }
 }
