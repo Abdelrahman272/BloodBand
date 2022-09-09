@@ -37,9 +37,13 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
+        $image= $request->image;
+        $imageName=time().'.'.$image->getClientOriginalExtension();
+        $request->image->move('images', $imageName);
         Post::create([
             "title"=>$request->title,
             "body"=>$request->body,
+           'image' =>$imageName,
         ]);
 
         flash('Posts Success To Create')->success();
@@ -80,9 +84,13 @@ class PostController extends Controller
     {
         $models = Post::findorFail($id);
 
+        $image= $request->image;
+        $imageName=time().'.'.$image->getClientOriginalExtension();
+        $request->image->move('images', $imageName);
         $models->update([
             "title"=>$request->title,
             "body"=>$request->body,
+            'image' =>$imageName,
         ]);
 
         flash('Post Update Success')->success();

@@ -29,13 +29,6 @@ class CityController extends Controller
      */
     public function create()
     {
-        $model = Governorate::all();
-
-        if($model->count() < 1)
-        {
-            flash('Please Add Governorate Before Add City')->error();
-            return redirect()->route('cities.index');   
-        }
 
         return view('cities.create');
     }

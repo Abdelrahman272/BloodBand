@@ -18,5 +18,6 @@ class DonorController extends Controller
         Donor::destroy($id);
         flash('Donor has been deleted')->success();
         return redirect()->route('donors.index');
+
     }
 }

@@ -47,7 +47,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{route('posts.store')}}" method="POST">
+                        <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -57,6 +57,10 @@
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Posts Body</label>
                                     <textarea class="form-control" name='body' id="exampleFormControlTextarea1" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">Select Image</label>
+                                    <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                             </div>
                             <!-- /.card-body -->

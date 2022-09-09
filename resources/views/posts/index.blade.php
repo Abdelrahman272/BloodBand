@@ -43,6 +43,7 @@ Posts
                             <th>#ID</th>
                             <th>Title</th>
                             <th>Body</th>
+                            <th>Image</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
@@ -54,6 +55,9 @@ Posts
                                 <td>{{$i}}</td>
                                 <td>{{$model->title}}</td>
                                 <td>{{$model->body}}</td>
+                                <td>
+                                    <img src="{{ url('images/'.$model->image) }}"style="height: 100px; width: 150px;">
+                                </td>
                                 <td>
                                     <a href="{{route('posts.edit', $model->id)}}" class="btn btn-primary btn-md" role="button" aria-disabled="true">Edit</a>
                                     <form class="btn" action="{{route('posts.destroy', $model->id)}}" method="POST">

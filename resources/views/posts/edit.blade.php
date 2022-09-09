@@ -61,7 +61,7 @@ edit/post
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{route('posts.update',[$model->id])}}" method="POST">
+                        <form action="{{route('posts.update',[$model->id])}}" method="POST" enctype="multipart/form-data">
                             @method('put')
                             @csrf
                             <div class="card-body">
@@ -72,6 +72,11 @@ edit/post
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Body</label>
                                     <textarea class="form-control" name='body' id="exampleFormControlTextarea1" rows="3">{{$model->body}}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlFile1">Select Image</label>
+                                    <img src="{{ url('images/'.$model->image) }}"style="height: 100px; width: 150px;">
+                                    <input type="file" name="image" class="form-control-file" id="exampleFormControlFile1">
                                 </div>
                             </div>
                             <!-- /.card-body -->
