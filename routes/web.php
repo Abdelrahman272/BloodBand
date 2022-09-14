@@ -5,7 +5,11 @@ use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DonorController;
 use App\Http\Controllers\GovernorateController;
+use App\Http\Controllers\MainController;
 use App\Http\Controllers\PostController;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,18 +23,47 @@ use Illuminate\Support\Facades\Route;
 |
  */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
+ 
+Auth::routes();
 
-Route::resource('/cities', CityController::class);
+// Route::get('/', function () {
+//    return view('auth.login');
+// })->name('login`');
 
-Route::resource('/governorate', GovernorateController::class);
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
-Route::resource('/category', CategoryController::class);
+Route::group(['middleware' => ['auth:web']], function() {
+   Route::get('/', [MainController::class, 'index'])->name('index');
+  
+  Route::get('/index', function () {
+      return view('index');
+  })->name('index');
+  
+  Route::resource('/cities', CityController::class);
+  
+  Route::resource('/governorate', GovernorateController::class);
+  
+  Route::resource('/category', CategoryController::class);
+  
+  Route::resource('/posts', PostController::class);
+  
+  Route::resource('/contact', ContactController::class);
+  
+  Route::resource('/donors', DonorController::class);
+  
+});
 
-Route::resource('/posts', PostController::class);
+Route::get('/send', function () {
 
-Route::resource('/contact', ContactController::class);
+  Mail::to('abdelrahmanhamdy252@gmail.com')->send(new TestMail());
 
-Route::resource('/donors', DonorController::class);
+  return response("sending");
+
+});
+
+
+
+
+
+
+
